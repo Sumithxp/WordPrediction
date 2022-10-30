@@ -31,9 +31,9 @@ namespace WordPrediction.Application.Words.Queries.GetPredictWords
         [Test]
         [TestCase(@"Test")]
         [TestCase(@"")]
-        public async Task TestExecuteShouldReturnListOfWords(string term)
+        public async Task Execute_FindPrediction_Should_Return_ListOfWords(string text)
         {
-            var results = await _query.Execute(term);
+            var results = await _query.Execute(text);
             var result = results.Single();
             Assert.That(result.Value, Is.EqualTo(Value));
         }

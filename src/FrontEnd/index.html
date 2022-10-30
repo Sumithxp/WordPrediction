@@ -128,7 +128,7 @@
                     if (self.lastWord.length <= 2) retuen;
                     if (self.process) retuen;
                     self.process = true;
-                    fetch(`https://localhost:7189/api/WordPredicts?term=${self.lastWord}`, {
+                    fetch(`https://localhost:7189/api/WordPredicts?text=${self.lastWord}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Basic YWRtOjIwNDA=',
@@ -139,12 +139,6 @@
                         .then((response => {
                             if (response.ok) {
                                 return response.json();
-
-                                // response.json().then(function (data) {
-                                //     //  this.fetchResponse = data;
-                                //     self.suggestions = data;
-                                //     self.process = false;
-                                // });
                             } else {
                                 alert("Server returned " + response.status + " : " + response.statusText);
                             }
@@ -155,10 +149,6 @@
                         .catch(err => {
                             console.log(err);
                         });
-
-
-
-                    //  self.suggestions = ["test1", "test2", "test3"]
                 }
             }
 

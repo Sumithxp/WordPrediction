@@ -20,7 +20,7 @@ namespace WordPrediction.Infrastructure
         }
 
         [Test]
-        public void Test()
+        public void GetPredictions_FromServer_ShouldVerifyResponse()
         {
             _mocker.GetMock<IPredictedWordsService>()
                 .Verify(x => x.GetPredictions("cat"), Times.Once);

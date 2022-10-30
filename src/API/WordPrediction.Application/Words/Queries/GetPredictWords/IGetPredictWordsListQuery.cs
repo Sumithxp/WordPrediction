@@ -2,6 +2,6 @@
 {
     public interface IGetPredictWordsListQuery
     {
-        Task<IReadOnlyCollection<PredictWordModel>> Execute(string term);
+        Task<IReadOnlyCollection<PredictWordModel>> Execute(string text);
     }
 }

@@ -12,11 +12,11 @@ namespace WordPrediction.Application.Words.Queries.GetPredictWords
             _database = database;
             _predictedWordsService = predictedWordsService;
         }
-        public async Task<IReadOnlyCollection<PredictWordModel>> Execute(string term)
+        public async Task<IReadOnlyCollection<PredictWordModel>> Execute(string text)
         {
 
             var words = _database.Words
-                .Where(w => w.Value.StartsWith(term))
+                .Where(w => w.Value.StartsWith(text))
                 .Select(w => new PredictWordModel
                 {
                     Value = w.Value,
@@ -24,7 +24,7 @@ namespace WordPrediction.Application.Words.Queries.GetPredictWords
 
             var result = await words.ToListAsync();
 
-            var preditectWordsFromServer = await _predictedWordsService.GetPredictions(term);
+            var preditectWordsFromServer = await _predictedWordsService.GetPredictions(text);
             if (preditectWordsFromServer.Length > 0)
             {
                 foreach (var item in preditectWordsFromServer)
