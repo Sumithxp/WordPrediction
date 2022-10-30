@@ -5,7 +5,7 @@ using WordPrediction.Application.Words.Queries.GetPredictWords;
 namespace WordPrediction.Api.WordPredict
 {
     [Route("api/[controller]s")]
-    [Authorize]
+   // [Authorize]
     [ApiController]
     public class WordPredictController : ControllerBase
     {
@@ -17,9 +17,9 @@ namespace WordPrediction.Api.WordPredict
         }
 
         [HttpGet]
-        public  IReadOnlyCollection<PredictWordModel> Get([FromQuery] string term)
+        public async Task<IReadOnlyCollection<PredictWordModel>> Get([FromQuery] string term)
         {
-            return  _query.Execute(term);
+            return await _query.Execute(term);
         }
     }
 }

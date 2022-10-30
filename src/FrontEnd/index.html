@@ -68,10 +68,11 @@
             data() {
                 return {
                     input: 'cat',
-                    suggestions: ["s", "dddd", "dfsff"],
+                    suggestions: [],
                     timeoutHandler: null,
                     predictionIndex: null,
-                    lastWord: ''
+                    lastWord: '',
+                    process: false
                 }
             },
             methods: {
@@ -119,11 +120,44 @@
                         this.predictionIndex = this.predictionIndex > 0 ? this.predictionIndex - 1 : null;
                     }
                     this.$refs.text.focus();
-                },                
+                },
                 findSuggestions() {
                     let self = this;
                     let words = self.input.split(" ");
                     self.lastWord = words[words.length - 1]
+                    if (self.lastWord.length <= 2) retuen;
+                    if (self.process) retuen;
+                    self.process = true;
+                    fetch(`https://localhost:7189/api/WordPredicts?term=${self.lastWord}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Basic YWRtOjIwNDA=',
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json;charset=utf-8'
+                        }
+                    })
+                        .then((response => {
+                            if (response.ok) {
+                                return response.json();
+
+                                // response.json().then(function (data) {
+                                //     //  this.fetchResponse = data;
+                                //     self.suggestions = data;
+                                //     self.process = false;
+                                // });
+                            } else {
+                                alert("Server returned " + response.status + " : " + response.statusText);
+                            }
+                        })).then(response => {
+                            self.suggestions = response.map(e => e.value);
+                            this.process = false;
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+
+
+
                     //  self.suggestions = ["test1", "test2", "test3"]
                 }
             }
