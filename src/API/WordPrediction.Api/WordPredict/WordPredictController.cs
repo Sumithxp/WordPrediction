@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using WordPrediction.Api.Attributes;
 using WordPrediction.Application.Words.Queries.GetPredictWords;
 
 namespace WordPrediction.Api.WordPredict
 {
     [Route("api/[controller]s")]
+    [Authorize]
     [ApiController]
     public class WordPredictController : ControllerBase
     {
