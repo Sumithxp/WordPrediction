@@ -1,6 +1,7 @@
 using WordPrediction.Api.Middlewares;
 using WordPrediction.Application.Interfaces;
 using WordPrediction.Application.Words.Queries.GetPredictWords;
+using WordPrediction.Infrastructure;
 using WordPrediction.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDatabaseService, DatabaseService>();
 builder.Services.AddScoped<IGetPredictWordsListQuery, GetPredictWordsListQuery>();
-
+builder.Services.AddScoped<IPredictedWordsService, PredictedWordsService>();
+builder.Services.AddHttpClient("Wizkids", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("https://services.lingapps.dk");
+});
 
 var app = builder.Build();
 
