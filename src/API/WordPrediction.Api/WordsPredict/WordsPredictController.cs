@@ -2,16 +2,16 @@
 using WordPrediction.Api.Attributes;
 using WordPrediction.Application.Words.Queries.GetPredictWords;
 
-namespace WordPrediction.Api.WordPredict
+namespace WordPrediction.Api.WordsPredict
 {
     [Route("api/[controller]s")]
     [Authorize]
     [ApiController]
-    public class WordPredictController : ControllerBase
+    public class WordsPredictController : ControllerBase
     {
         private readonly IGetPredictWordsListQuery _query;
 
-        public WordPredictController(IGetPredictWordsListQuery query)
+        public WordsPredictController(IGetPredictWordsListQuery query)
         {
             _query = query;
         }
