@@ -10,6 +10,7 @@
 
 .chosen {
     background-color: rgb(43, 206, 238);
+    display: block;
 }
 
 button {
@@ -19,4 +20,8 @@ button {
 
 textarea {
     width: 400px;
+}
+
+.d-flex {
+    display: flex;
 }

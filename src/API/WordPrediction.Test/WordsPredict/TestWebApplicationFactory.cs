@@ -31,16 +31,6 @@ namespace WordPrediction.Api.Tests.Integration
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<DatabaseService>();
                 db.Database.EnsureCreated();
-                try
-                {
-                    db.Words.Add(new Domain.Word { Id = 1, Value = "Test" });
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-
 
             });
 
