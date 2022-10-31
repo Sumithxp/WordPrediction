@@ -20,13 +20,13 @@ namespace WordPrediction.Api.WordPredict
 
         [Test]
         [TestCase("te")]
-        public void TestGetPredictedWordsShouldReturnListOfWordsByTerm(string term)
+        public async Task GetPredicted_Words_Should_Return_ListOfWords(string text)
         {
             var predictWordModels = new List<PredictWordModel> { new PredictWordModel() };
             _mocker.GetMock<IGetPredictWordsListQuery>()
-                .Setup(q => q.Execute(term))
-                .Returns(predictWordModels);
-            var results = _controller.Get(term);
+                .Setup(q => q.Execute(text))
+                .ReturnsAsync(predictWordModels);
+            var results = await _controller.Get(text);
 
             Assert.That(results, Is.EqualTo(predictWordModels));
         }

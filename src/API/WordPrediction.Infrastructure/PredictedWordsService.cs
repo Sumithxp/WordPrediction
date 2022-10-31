@@ -1,16 +1,21 @@
-﻿using System.Net.Http;
+﻿using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using WordPrediction.Application.Interfaces;
-
 namespace WordPrediction.Infrastructure
 {
     public class PredictedWordsService : IPredictedWordsService
     {
-        private const string ACCESS_TOKEN = "";
+        private string ACCESS_TOKEN = "";
         private readonly IHttpClientFactory _httpClientFactory;
-
-        public PredictedWordsService(IHttpClientFactory httpClientFactory) => _httpClientFactory = httpClientFactory;
+        protected readonly IConfiguration _configuration;
+        public PredictedWordsService(IHttpClientFactory httpClientFactory,
+            IConfiguration configuration)
+        {
+            _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            ACCESS_TOKEN = _configuration.GetSection("WizKidsToken").Value;
+        }
 
 
         private HttpClient CreateClient()

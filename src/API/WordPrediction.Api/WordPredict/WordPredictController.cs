@@ -17,9 +17,9 @@ namespace WordPrediction.Api.WordPredict
         }
 
         [HttpGet]
-        public  IReadOnlyCollection<PredictWordModel> Get([FromQuery] string term)
+        public async Task<IReadOnlyCollection<PredictWordModel>> Get([FromQuery] string text)
         {
-            return  _query.Execute(term);
+            return await _query.Execute(text);
         }
     }
 }
