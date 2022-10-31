@@ -6,6 +6,7 @@ using WordPrediction.Application.Words.Queries.GetPredictWords;
 using WordPrediction.Infrastructure;
 using WordPrediction.Persistence;
 using Microsoft.EntityFrameworkCore;
+using WordPrediction.Application.Words.Queries.GetPredictWordDictionary;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDatabaseService, DatabaseService>();
 builder.Services.AddScoped<IGetPredictWordsListQuery, GetPredictWordsListQuery>();
+builder.Services.AddScoped<IGetPredictWordDictionaryQuery, GetPredictWordDictionaryQuery>();
 builder.Services.AddScoped<IPredictedWordsService, PredictedWordsService>();
 builder.Services.AddHttpClient("Wizkids", httpClient =>
 {

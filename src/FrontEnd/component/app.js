@@ -5,23 +5,30 @@ export default {
     template: `<div>
     <p>Type in the textfield, use arrow keys [Up], [Down] and [Enter] in order to choose suggestions:</p>
     <textarea id="textarea" cols="2" rows="5" v-model="input" @input="updateText" @keyup.enter="choose"
-        @keyup.up="choosePrev" @keyup.down="chooseNext" ref="text"></textarea>
-</div>
-
-<div>
+    @keyup.up="choosePrev" @keyup.down="chooseNext" ref="text"></textarea>
+ </div>
+ <div>
     <span>Suggestions: </span>
-    <div class="row" v-for="(suggestion, index) in suggestions">
-        <button v-if="index === predictionIndex" @click="add(suggestion)" class="chosen">
-            {{suggestion}}
-        </button>
-        <button v-if="index !== predictionIndex" @click="add(suggestion)">{{suggestion}}
-        </button>
-    </div>
-</div>`,
+    <div class="d-flex">
+       <div class="row" >
+          <button v-for="(suggestion, index) in suggestions.local"  @click="add(suggestion)" class="chosen">
+          {{suggestion}}
+          </button>
+       </div>
+       <div class="row" >
+          <button v-for="(suggestion, index) in suggestions.custom"  @click="add(suggestion)" class="chosen">
+          {{suggestion}}
+          </button>
+       </div>
+    </div>    
+ </div>`,
     data() {
         return {
             input: '',
-            suggestions: [],
+            suggestions: {
+                local: [],
+                custom: []
+            },
             timeoutHandler: null,
             predictionIndex: null,
             lastWord: '',
@@ -49,7 +56,10 @@ export default {
             self.input = strLeft + suggestion + strRight;
             setCursorPosition(strLeft.length + suggestion.length);
             self.predictionIndex = null;
-            self.suggestions = [];
+            self.suggestions = {
+                local: [],
+                custom: []
+            };
             self.$refs.text.focus();
         },
         choose: function () {
@@ -80,7 +90,10 @@ export default {
             let words = self.input.split(" ");
             self.lastWord = words[words.length - 1]
             if (self.lastWord.length < 2) {
-                self.suggestions = [];
+                self.suggestions = {
+                    local: [],
+                    custom: []
+                };
                 return;
             };
             if (self.process) return;
@@ -100,7 +113,7 @@ export default {
                         alert("Server returned " + response.status + " : " + response.statusText);
                     }
                 })).then(response => {
-                    self.suggestions = response.map(e => e.value);
+                    self.suggestions = response;
                     this.process = false;
                 })
                 .catch(err => {
