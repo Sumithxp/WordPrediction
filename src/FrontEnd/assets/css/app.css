@@ -1,0 +1,22 @@
+.row {
+    padding: 2px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.chosen {
+    background-color: lightgreen;
+}
+
+button {
+    min-width: 80px;
+
+}
+
+textarea {
+    width: 400px;
+}

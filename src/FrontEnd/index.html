@@ -6,30 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predictionary</title>
-    <style>
-        .row {
-            padding: 2px;
-        }
+    <link rel="stylesheet" href="./assets/css/app.css">
 
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
 
-        .chosen {
-            background-color: lightgreen;
-        }
 
-        button {
-            min-width: 80px;
-
-        }
-
-        textarea {
-            width: 400px;
-        }
-    </style>
     <script type="importmap">
         {
           "imports": {
@@ -67,7 +47,7 @@
         createApp({
             data() {
                 return {
-                    input: 'cat',
+                    input: '',
                     suggestions: [],
                     timeoutHandler: null,
                     predictionIndex: null,
