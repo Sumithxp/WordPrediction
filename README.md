@@ -13,7 +13,7 @@ SqlLite 3
 
 # Front-end
 1. Write HTML/CSS for displaying a <textarea> and two lists of word prediction results (word prediction web service and custom dictionary).
-2. Vue Js usedc to function that performs a web request to fetch word predictions from your back-end API.
+2. Vue Js used to function that performs a web request to fetch word predictions from your back-end API.
 3. On every keypress event in the <textarea> fetch word predictions based on the text value and display the results in the two lists.
 
 **Tools**
