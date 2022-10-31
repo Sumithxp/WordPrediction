@@ -3,19 +3,19 @@ using Moq.AutoMock;
 using NUnit.Framework;
 using WordPrediction.Application.Words.Queries.GetPredictWords;
 
-namespace WordPrediction.Api.WordPredict
+namespace WordPrediction.Api.WordsPredict
 {
     [TestFixture]
-    public class WordPredictControllerTests
+    public class WordsPredictControllerTests
     {
-        private WordPredictController _controller;
+        private WordsPredictController _controller;
         private AutoMocker _mocker;
 
         [SetUp]
         public void Setup()
         {
             _mocker = new AutoMocker();
-            _controller = _mocker.CreateInstance<WordPredictController>();
+            _controller = _mocker.CreateInstance<WordsPredictController>();
         }
 
         [Test]

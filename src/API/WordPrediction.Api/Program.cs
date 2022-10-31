@@ -1,14 +1,26 @@
+
+using Microsoft.Data.Sqlite;
 using WordPrediction.Api.Middlewares;
 using WordPrediction.Application.Interfaces;
 using WordPrediction.Application.Words.Queries.GetPredictWords;
 using WordPrediction.Infrastructure;
 using WordPrediction.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddCors();
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<DatabaseService>((options, context) =>
+{
+    var connection = new SqliteConnection(builder.Configuration.GetConnectionString("WordDatabase"));
+    context.UseSqlite(connection);
+
+});
+
+
 
 
 builder.Services.AddEndpointsApiExplorer();
