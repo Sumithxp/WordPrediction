@@ -8,14 +8,11 @@ namespace WordPrediction.Persistence
 {
     public class DatabaseService : DbContext, IDatabaseService
     {
-        protected readonly IConfiguration _configuration;
-        public DatabaseService(IConfiguration configuration) :base()
-        {
-            _configuration = configuration;
-        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(_configuration.GetConnectionString("WordDatabase"));
+
+        public DatabaseService(DbContextOptions<DatabaseService> options) : base(options)
+        {
+        }          
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
