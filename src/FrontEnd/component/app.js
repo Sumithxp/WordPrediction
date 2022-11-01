@@ -20,6 +20,9 @@ export default {
           {{suggestion}}
           </button>
        </div>
+       <div class="row error" v-if="error" >
+       <p> {{error}} </p>
+       </div>
     </div>    
  </div>`,
     data() {
@@ -32,7 +35,8 @@ export default {
             timeoutHandler: null,
             predictionIndex: null,
             lastWord: '',
-            process: false
+            process: false,
+            error: ''
         }
     },
     methods: {
@@ -114,10 +118,11 @@ export default {
                     }
                 })).then(response => {
                     self.suggestions = response;
-                    this.process = false;
+                    self.process = false;
                 })
                 .catch(err => {
                     console.log(err);
+                    self.error = err;
                 });
         }
     }
