@@ -3,7 +3,7 @@
 
 export default {
     template: `<div>
-    <p>Type in the textfield. Suggested words will be displayed beloww :</p>
+    <p>Type in the textfield. Suggested words will be displayed below :</p>
     <textarea id="textarea" cols="2" rows="5" v-model="input" @input="updateText" @keyup.enter="choose"
     @keyup.up="choosePrev" @keyup.down="chooseNext" ref="text"></textarea>
  </div>
