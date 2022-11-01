@@ -1,5 +1,5 @@
 # Overview
-Get word suggestions (predictions) while typing. Predictions are word completions based on the input text, for example: If the input text is I like ca the predictions could be cars, cats and cake.
+Get word suggestions (predictions) while typing. Predictions are word completions based on the input text, for example: If the input text is I like `ca` the predictions could be `cars`, `cats` and `cake`.
 
 The application is built by .Net 6 Web Api and VueJs following the principle of clean architecture
 
