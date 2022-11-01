@@ -24,8 +24,10 @@ namespace WordPrediction.Api.WordsPredict
         [TestCase("te")]
         public async Task GetPredicted_Words_Should_Return_ListOfWords(string text)
         {
+            // Arrange
             var predictWordModels = new List<PredictWordModel> { new PredictWordModel() };
             var predictWordDictionaryModel = new List<PredictWordDictionaryModel> { new PredictWordDictionaryModel() };
+
             _mocker.GetMock<IGetPredictWordsListQuery>()
                 .Setup(q => q.Execute(text))
                 .ReturnsAsync(predictWordModels);
@@ -40,10 +42,15 @@ namespace WordPrediction.Api.WordsPredict
                 Custom = predictWordDictionaryModel.Select(x => x.Value).ToArray()
             };
 
-            var results = await _controller.Get(text);
+            // Act
+            var result = await _controller.Get(text);
 
-            Assert.That(results.Local, Is.EqualTo(expected.Local));
-            Assert.That(results.Custom, Is.EqualTo(expected.Custom));
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Local, Is.Not.Null);
+            Assert.That(result.Custom, Is.Not.Null);
+            Assert.That(result.Local, Is.EqualTo(expected.Local));
+            Assert.That(result.Custom, Is.EqualTo(expected.Custom));
         }
     }
 }

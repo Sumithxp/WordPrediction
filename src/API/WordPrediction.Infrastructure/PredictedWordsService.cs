@@ -33,8 +33,9 @@ namespace WordPrediction.Infrastructure
             if (!httpResponseMessage.IsSuccessStatusCode) throw new Exception("");
             using var contentStream =
                 await httpResponseMessage.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<string[]>(contentStream);
 
+            var result = await JsonSerializer.DeserializeAsync<string[]>(contentStream);
+            return result;
         }
     }
 }
