@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  web:
+    build:
+      build: ./FrontEnd      
+    ports:
+      - "8080:80"
+  Api:
+	build:
+      build: ./API/WordPrediction.Api      
+    ports:
+      - "8080:80"
