@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordPrediction.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordPrediction.Persistence", "WordPrediction.Persistence\WordPrediction.Persistence.csproj", "{53CD1E36-696E-4F0D-A28B-3C9CC6D4DD35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPrediction.Api.Tests.Integration", "WordPrediction.Test\WordPrediction.Api.Tests.Integration.csproj", "{95DE880E-1BFD-48CA-AADB-B29716C897D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordPrediction.Api.Tests.Integration", "WordPrediction.Test\WordPrediction.Api.Tests.Integration.csproj", "{95DE880E-1BFD-48CA-AADB-B29716C897D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPrediction.Infrastructure.Tests", "WordPrediction.Infrastructure.Tests\WordPrediction.Infrastructure.Tests.csproj", "{78DD5467-937B-4015-B9CC-30D79704D949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{95DE880E-1BFD-48CA-AADB-B29716C897D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95DE880E-1BFD-48CA-AADB-B29716C897D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95DE880E-1BFD-48CA-AADB-B29716C897D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78DD5467-937B-4015-B9CC-30D79704D949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78DD5467-937B-4015-B9CC-30D79704D949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78DD5467-937B-4015-B9CC-30D79704D949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78DD5467-937B-4015-B9CC-30D79704D949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

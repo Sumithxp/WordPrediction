@@ -1,4 +1,5 @@
-﻿using Moq.AutoMock;
+﻿using Moq;
+using Moq.AutoMock;
 using Moq.EntityFrameworkCore;
 using NUnit.Framework;
 using WordPrediction.Application.Interfaces;
@@ -19,12 +20,7 @@ namespace WordPrediction.Application.Words.Queries.GetPredictWords
         [SetUp]
         public void SetUp()
         {
-            _mocker = new AutoMocker();
-            _word = new Word() { Id = Id, Value = Value };
-
-            _mocker.GetMock<IDatabaseService>()
-                .Setup(p => p.Words)
-                .ReturnsDbSet(new List<Word> { _word });
+            _mocker = new AutoMocker();            
             _query = _mocker.CreateInstance<GetPredictWordsListQuery>();
         }
 
@@ -33,9 +29,24 @@ namespace WordPrediction.Application.Words.Queries.GetPredictWords
         [TestCase(@"")]
         public async Task Execute_FindPrediction_Should_Return_ListOfWords(string text)
         {
-            var results = await _query.Execute(text);
-            var result = results.Single();
-            Assert.That(result.Value, Is.EqualTo(Value));
+            // Arrange
+            _word = new Word() { Id = Id, Value = Value };
+
+            _mocker.GetMock<IDatabaseService>()
+                .Setup(p => p.Words)
+                .ReturnsDbSet(new List<Word> { _word });
+            // Act
+            var result = await _query.Execute(text);
+
+            // Assert
+
+            _mocker.GetMock<IDatabaseService>()
+                .Verify(x => x.Words, Times.Once);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.AreEqual(result.Count, 1);
+            Assert.That(result.First().Value, Is.EqualTo("Test"));
+           
         }
     }
 }

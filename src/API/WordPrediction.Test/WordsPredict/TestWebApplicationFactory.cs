@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using WordPrediction.Api.Tests.Integration.WordsPredict.MockServices;
+using WordPrediction.Application.Words.Queries.GetPredictWordDictionary;
+using WordPrediction.Application.Words.Queries.GetPredictWords;
 using WordPrediction.Persistence;
 
 namespace WordPrediction.Api.Tests.Integration
@@ -19,18 +22,8 @@ namespace WordPrediction.Api.Tests.Integration
 
             builder.ConfigureServices(services =>
             {
-                services.AddDbContext<DatabaseService>((options, context) =>
-                {
-                    var connection = new SqliteConnection("DataSource=:memory:");
-                    context.UseSqlite(connection);
-
-                });
-
-                var sp = services.BuildServiceProvider();
-                using var scope = sp.CreateScope();
-                var scopedServices = scope.ServiceProvider;
-                var db = scopedServices.GetRequiredService<DatabaseService>();
-                db.Database.EnsureCreated();
+                services.AddScoped<IGetPredictWordsListQuery, GetPredictWordsListQueryMock>();
+                services.AddScoped<IGetPredictWordDictionaryQuery, GetPredictWordDictionaryQueryMock>();
 
             });
 
