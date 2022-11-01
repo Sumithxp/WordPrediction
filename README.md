@@ -20,3 +20,10 @@ SqlLite 3
 VUE js,
 HTML5,
 CSS3
+
+###### Usage
+  
+`> npm install --global serve`
+  
+`> serve`
+  
